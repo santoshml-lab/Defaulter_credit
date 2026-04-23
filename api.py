@@ -5,7 +5,7 @@ import numpy as np
 import joblib
 
 # LOAD MODEL + COLUMNS
-model = joblib.load("xgb_model_v2.pkl")
+model = joblib.load("xgb_model_ver3.pkl")
 cols = joblib.load("columns_v2.pkl")
 
 app = FastAPI()
@@ -53,9 +53,9 @@ def predict(data: InputData):
     pred = model.predict(df)[0]
 
     # 🎯 RISK LOGIC
-    if prob > 0.4:
+    if prob > 0.25:
         risk = "HIGH"
-    elif prob > 0.15:
+    elif prob > 0.08:
         risk = "MEDIUM"
     else:
         risk = "LOW"
